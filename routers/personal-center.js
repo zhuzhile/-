@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const userModel = require('../mouldes/users.js');
 const router = express.Router();
 
-router.get('/completeUserInfo',async function(req, res){
+router.post('/completeUserInfo',async function(req, res){
     // console.log(typeof res.headers.userId, res.headers.userId);
     let user = await userModel.find({});
     console.log("user", user);
