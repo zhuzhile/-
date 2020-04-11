@@ -8,7 +8,24 @@ const userSchema = new schema({
     },
     password:{
         type:String
+    },
+    education:{
+        type:String
+    },
+    postName:{
+        type:String
+    },
+    companyName:{
+        type:String
+    },
+    realName:
+    {
+        type:String
+    },
+    avatarUrl:{
+        type:String
     }
+
 })
 
 const userModel = mongoose.model('users',userSchema);
