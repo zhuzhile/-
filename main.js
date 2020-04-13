@@ -12,14 +12,13 @@ mongoose.connect('mongodb://localhost/personal_blog', { useUnifiedTopology: true
 
 app.use(express.json());
 app.use(cors());
-// app.use(jwt());
 app.use(function(req, res, next){
-    let userId = '';
-    // console.log(req.headers.authorization)
-    // if(req.headers.authorization != "null"){
-    //     userId = jwt.verify(req.headers.authorization, SECRET_KEY);
-    // }
-    next(userId)
+    // let userId = '';
+    if(req.headers.authorization != "null"){
+        req.userId = jwt.verify(req.headers.authorization, SECRET_KEY);
+
+    }
+    next()
 })
 
 app.use('/login',loginRouter);
