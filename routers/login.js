@@ -42,8 +42,7 @@ router.post('/addUser', async function(req, res){
     if(arry.length > 0){
         res.send({code:400,message:'已存在该用户',result:false});
         return;
-    }zx
-    console.log(salt);
+    }
     user.password = bcrypt.hashSync(req.body.password, salt);
     let userInfo =await user.save();
     res.send({code:200,obj:userInfo,result:true});
