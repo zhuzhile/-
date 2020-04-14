@@ -36,14 +36,13 @@ router.post('/signIn', async function(req, res){
 
 // 注册
 router.post('/addUser', async function(req, res){
-    console.log('调用接口',req);
     var user = new userModel();
     user.name = req.body.userName;
     let arry = await userModel.find({name:req.body.userName});
     if(arry.length > 0){
         res.send({code:400,message:'已存在该用户',result:false});
         return;
-    }
+    }zx
     console.log(salt);
     user.password = bcrypt.hashSync(req.body.password, salt);
     let userInfo =await user.save();
