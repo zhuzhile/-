@@ -11,6 +11,12 @@ const articleSchema = new Schema({
     },
     description:{
         type:String
+    },
+    tag:{
+        type:String
+    },
+    createTime:{
+        type:Date
     }
 })
 
