@@ -3,7 +3,7 @@ const app = express();
 const router = express.Router();
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
-
+const articleRouter = require('./routers/publish-article.js');
 const mongoose = require('mongoose');
 const personalCenterRouter = require('./routers/personal-center.js');
 const {loginRouter, SECRET_KEY} = require('./routers/login.js');
@@ -21,8 +21,9 @@ app.use(function(req, res, next){
     next()
 })
 
-app.use('/login',loginRouter);
-app.use('/personalCenter',personalCenterRouter);
+app.use('/article', articleRouter);
+app.use('/login', loginRouter);
+app.use('/personalCenter', personalCenterRouter);
 
 app.listen('30000',function(){
     console.log("connected successfully");
