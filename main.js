@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const router = express.Router();
 const cors = require('cors');
+const commentRouter = require('./routers/comment.js');
 const jwt = require('jsonwebtoken');
 const articleRouter = require('./routers/publish-article.js');
 const mongoose = require('mongoose');
@@ -24,6 +25,7 @@ app.use(function(req, res, next){
 app.use('/article', articleRouter);
 app.use('/login', loginRouter);
 app.use('/personalCenter', personalCenterRouter);
+app.use('/comment', commentRouter);
 
 app.listen('30000',function(){
     console.log("connected successfully");
