@@ -18,7 +18,7 @@ router.post('/addComment',async function(req, res){
 
 // 删除文章评论
 router.delete('/deleteComments', async function(req, res){
-    console.log(req.body);
+    // console.log(req.body);
     let info = await commentModle.remove({articleName:req.body.name});
     res.send({
         result: true,
@@ -30,7 +30,7 @@ router.delete('/deleteComments', async function(req, res){
 // 获得此篇文章所有评论
 router.get('/getAllCommentsOfArticle', async function(req, res){
     // console.log(req.query);
-    
+
    let commentsList = await commentModle.find({articleName:req.query.articleName});
    console.log(commentsList);
    res.send({
@@ -42,7 +42,12 @@ router.get('/getAllCommentsOfArticle', async function(req, res){
 
 // 查询这个用户的所有文章
 router.get('/getAllCommentsOfUser', async function(req, res){
-    let commentsList = await commentModle.find({userName:req.query.userName});
+    let commentList = [];
+    if(req.query.userName === ''){
+        commentsList = await commentModle.find();
+    }else{
+        commentsList = await commentModle.find({userName:req.query.userName});
+    }
     res.send({
         commentsList: commentsList,
         result:true,

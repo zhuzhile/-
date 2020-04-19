@@ -10,7 +10,7 @@ const router = express.Router();
 
 // 完善用户信息
 router.post('/completeUserInfo',async function(req, res){
-    console.log("res.headers", req.userId);
+    // console.log("res.headers", req.userId);
     let user = await userModel.findById(req.userId);
     let userInfo = await userModel.update({name:user.name},
         {'realName':req.body.realName,'postName':req.body.postName,'education':req.body.education,'companyName':req.body.companyName} );
@@ -36,7 +36,7 @@ router.post('/submitAvatarUrl', async function(req, res){
     let user = await userModel.findById(req.userId);
     let userInfo = await userModel.update({name:user.name},
         {'avatarUrl':req.body.avatarUrl} );
-    console.log("------userInfo", userInfo);
+    // console.log("------userInfo", userInfo);
     // if(userInfo.ok)
     res.send({
         result:true,
@@ -46,7 +46,7 @@ router.post('/submitAvatarUrl', async function(req, res){
 
 // 修改密码
 router.post('/changePassword', async function(req, res){
-    console.log('---changePassword', req.body);
+    // console.log('---changePassword', req.body);
     let user = await userModel.findById(req.userId);
     if(bcrypt.compareSync(req.body.oldPassword, user.password)){
         let userInfo = await userModel.update({name:user.name},

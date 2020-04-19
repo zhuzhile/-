@@ -17,6 +17,10 @@ const articleSchema = new Schema({
     },
     createTime:{
         type:Date
+    },
+    isActive:{
+        type:Boolean,
+        default:false
     }
 })
 

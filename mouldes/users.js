@@ -24,6 +24,9 @@ const userSchema = new schema({
     },
     avatarUrl:{
         type:String
+    },
+    collections:{
+        type: Array
     }
 
 })
