@@ -51,13 +51,9 @@ router.post('/addUser', async function(req, res){
 })
 
 // 收藏文章
-router.post('/collectArticle',async function(req, res, next){
-    let info = await articleModel.find({title:req.body.title});
-    req.isActive = info[0].isActive;
-    next();
-},async function(req, res){
-    console.log(req.isActive);
-    if(! req.isActive){
+router.post('/collectArticle',async function(req, res){
+    console.log('collectArticle', req.body.isActive);
+    if(! req.body.isActive){
         let info = await userModel.findOneAndUpdate({name:req.body.userName}, {$push:{collections:{title:req.body.title,content:req.body.content}}});
         
         let updateInfo = await articleModel.update({title:req.body.title},{isActive:true});
@@ -76,6 +72,9 @@ router.post('/collectArticle',async function(req, res, next){
     }
  
 })
+
+
+
 
 //根据jwt获取用户信息
 // router.get('/getUserInfo',async function(req, res){

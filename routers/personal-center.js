@@ -31,6 +31,8 @@ router.get('/getCompleteUserInfo', async function(req, res){
 
 })
 
+
+
 // 修改个人头像
 router.post('/submitAvatarUrl', async function(req, res){
     let user = await userModel.findById(req.userId);

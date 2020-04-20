@@ -28,9 +28,22 @@ router.post('/submitContent',  async function(req, res){
     
 })
 
+router.get('/clearAllActive', async function(req, res){
+    let info = await articleModel.updateMany({}, {$set:{isActive:false}});
+    console.log('---clearAllActive info', info);
+    res.send({
+        result: true,
+        msg:'清空Active为false'
+    })
+
+})
+
+
+
+
 router.get('/getAllArticleInfo', async function(req, res){
     // console.log('articles');
-    let articles =await articleModel.find();
+    let articles = await articleModel.find();
     // console.log("articles", articles);
     res.send({
         result: true,
