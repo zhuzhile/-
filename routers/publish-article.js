@@ -65,8 +65,12 @@ router.get('/getSplitArticleInfo',async function(req, res){
 })
 
 router.get('/updateArticleList', async function(req, res){
-    let articles = await articleModel.find({tag:req.query.tag}).skip((req.query.current-1)*req.query.pageSize).limit(req.query.pageSize*1);
-
+    let articles = [];
+    if(!req.query.tag){
+        articles = await articleModel.find().skip((req.query.current-1)*req.query.pageSize).limit(req.query.pageSize*1);
+    }else{
+        articles = await articleModel.find({tag:req.query.tag}).skip((req.query.current-1)*req.query.pageSize).limit(req.query.pageSize*1);
+    }
     res.send({
         result: true,
         articleInfo: articles
